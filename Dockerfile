@@ -33,7 +33,9 @@ RUN apt-get -qq update && apt-get -qq dist-upgrade && apt-get install -qq -y --n
     && apt-get -qq clean
 
 # Update curl
-RUN apt-get -qq build-dep -y curl \
+RUN sed -Ei 's/^# deb-src/deb-src/' /etc/apt/sources.list 
+    && apt-get update 
+    && apt-get -qq build-dep -y curl \
     && wget http://curl.haxx.se/download/curl-7.50.2.tar.bz2 \
     && tar -xvjf curl-7.50.2.tar.bz2 \
     && cd curl-7.50.2 \
