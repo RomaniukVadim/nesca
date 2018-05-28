@@ -45,3 +45,13 @@ docker build .
 ```
 docker run -i -e DISPLAY=$DISPLAY -v /tmp/.X11-unix/:/tmp/.X11-unix <IMAGE ID>
 ```
+Если возникает ошибка вида 
+```
+No protocol specified
+QXcbConnection: Could not connect to display :0
+
+```
+, то перед docker run выполнить 
+```
+xhost +local:docker
+```
